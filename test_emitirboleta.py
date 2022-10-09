@@ -33,8 +33,11 @@ def emitir(val):
 
 
   for i in range(val):
-        
-        x = df.loc[i,0]
+        try: 
+         x = df.loc[i,0]
+        except: x = None
+        if  x == None:
+              break
         monto = str(x)
       
         codigo=driver.find_element(By.XPATH,"/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[3]/div[1]/input[1]")
@@ -53,13 +56,14 @@ def emitir(val):
         time.sleep(1)
         driver.find_element(By.XPATH,"/html[1]/body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[5]/div[2]/button[1]").click()
         time.sleep(5)
-
-        driver.find_element(By.XPATH,"/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/header[1]/button[1]").click()
+        #driver.find_element(By.CLASS_NAME, "btn btn-primary").click()
+        driver.find_element(By.XPATH,"/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/footer[1]/button[2]").click()
         time.sleep(3)
 
 
 
 login()
-emitir(22)
+time.sleep(10)
+emitir(100)
 driver.quit()
 
